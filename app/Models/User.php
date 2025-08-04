@@ -45,4 +45,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function profession()
+    {
+        return $this->belongsTo(Profession::class);
+    }
+
+    public function commissions()
+    {
+        return $this->hasMany(Commission::class, 'publisher_id');
+    }
+
+    public function assignedCommissions()
+    {
+        return $this->belongsToMany(Commission::class, 'commission_user');
+    }
 }
